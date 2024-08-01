@@ -36,7 +36,7 @@ const NavbarSheet = () => {
           </SheetTitle>
         </SheetHeader>
         <hr />
-        <div className="h-[800px] overflow-hidden">
+        <div className="h-[90vh] overflow-hidden">
           {productsInCart.length === 0 && (
             <div className="flex flex-col gap-3 items-center justify-center text-center h-full">
               <MessageSquareWarning size={40} />
@@ -47,13 +47,13 @@ const NavbarSheet = () => {
               </p>
             </div>
           )}
-          <div className="flex flex-col gap-3 overflow-y-auto">
+          <div className="flex flex-col gap-3 overflow-y-auto h-[82%] mt-3">
             {productsInCart.map((product, index) => (
               <ProductItem key={index} {...product} />
             ))}
           </div>
           {productsInCart.length !== 0 && (
-            <div className="flex flex-col gap-5 mt-auto">
+            <div className="flex flex-col gap-5 mt-3">
               <hr />
               <div className="flex items-center justify-between">
                 <p>Subtotal</p>

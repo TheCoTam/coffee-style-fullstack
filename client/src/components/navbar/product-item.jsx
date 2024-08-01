@@ -4,9 +4,9 @@ import { Minus, Plus } from "lucide-react";
 const ProductItem = ({ name, image_url, price, amount }) => {
   return (
     <div className="flex items-center justify-between">
-      <img src={image_url} alt="Product" className="w-[80px]" />
+      <img src={image_url} alt="Product" className="w-[80px] rounded-md" />
       <div className="flex flex-col">
-        <p>{name}</p>
+        <p className="font-semibold">{name}</p>
         <p>{formatPrice(price)}</p>
       </div>
       <div className="flex items-center gap-2">
