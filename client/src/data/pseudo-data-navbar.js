@@ -1,0 +1,80 @@
+export const productsInCart = [
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+  {
+    image_url: "/test-product-image.jpg",
+    name: "Pink Premium Ceramic",
+    price: 15.99,
+    amount: 15,
+  },
+];
