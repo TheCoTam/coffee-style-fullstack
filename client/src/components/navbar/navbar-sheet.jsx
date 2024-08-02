@@ -21,7 +21,7 @@ const NavbarSheet = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <button className="group flex items-center gap-2 text-xs text-gray-600 hover:text-gray-800 font-semibold cursor-pointer">
+        <button className="group flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 font-semibold cursor-pointer">
           <ShoppingCart size={20} />
           <p>CART</p>
           <p className="bg-teal-200 rounded-lg px-1 group-hover:bg-teal-300">

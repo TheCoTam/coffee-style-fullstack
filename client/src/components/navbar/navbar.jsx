@@ -1,21 +1,47 @@
+import { Link } from "react-router-dom";
+import { ChartNoAxesGantt } from "lucide-react";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import NavbarSheet from "@/components/navbar/navbar-sheet";
+import HiddenMenu from "./hidden-menu";
 
 const Navbar = () => {
   const optionClassName =
-    "uppercase text-xs font-semibold text-gray-400 cursor-pointer hover:text-gray-800";
+    "uppercase text-sm font-semibold text-gray-400 cursor-pointer hover:text-teal-800 py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:bg-teal-500 after:h-[2px] hover:after:w-full after:transition-all after:duration-300 after:ease-in-out";
   return (
-    <div className="flex justify-evenly my-[30px] mx-5">
-      <img src="/logo.png" alt="Logo" className="w-[112px]" />
-      <div className="flex items-center justify-between w-max gap-3">
-        <p className={optionClassName}>Home</p>
-        <p className={optionClassName}>our Products</p>
-        <p className={optionClassName}>blogs</p>
-        <p className={optionClassName}>about</p>
-        <p className={optionClassName}>contact</p>
-        <p className={optionClassName}>styleguilde</p>
-      </div>
-      <NavbarSheet />
-    </div>
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item1">
+        <div className="flex justify-between lg:justify-evenly my-[30px] mx-5 px-10 lg:px-0">
+          <Link to="/" className="flex items-center w-[112px]">
+            <img src="/logo.png" alt="Logo" />
+          </Link>
+          <div className="hidden lg:flex items-center justify-between w-max gap-5">
+            <Link to="/" className={optionClassName}>
+              Home
+            </Link>
+            <p className={optionClassName}>our Products</p>
+            <p className={optionClassName}>blogs</p>
+            <p className={optionClassName}>about</p>
+            <p className={optionClassName}>contact</p>
+            <p className={optionClassName}>styleguilde</p>
+          </div>
+          <div className="flex gap-5">
+            <NavbarSheet />
+            <AccordionTrigger className="lg:hidden p-0">
+              <ChartNoAxesGantt />
+            </AccordionTrigger>
+          </div>
+        </div>
+        <AccordionContent>
+          <HiddenMenu />
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
 
