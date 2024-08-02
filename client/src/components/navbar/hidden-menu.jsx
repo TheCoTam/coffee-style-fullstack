@@ -9,11 +9,21 @@ const HiddenMenu = () => {
       <Link to="/" className={optionClassName}>
         home
       </Link>
-      <p className={optionClassName}>our Products</p>
-      <p className={optionClassName}>blogs</p>
-      <p className={optionClassName}>about</p>
-      <p className={optionClassName}>contact</p>
-      <p className={optionClassName}>styleguilde</p>
+      <Link to="products" className={optionClassName}>
+        our Products
+      </Link>
+      <Link to="blog" className={optionClassName}>
+        blogs
+      </Link>
+      <Link to="about" className={optionClassName}>
+        about
+      </Link>
+      <Link to="contact" className={optionClassName}>
+        contact
+      </Link>
+      <Link to="styleguilde" className={optionClassName}>
+        styleguilde
+      </Link>
     </div>
   );
 };
