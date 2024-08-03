@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ChartNoAxesGantt } from "lucide-react";
 
 import {
@@ -11,34 +11,36 @@ import NavbarSheet from "@/components/navbar/navbar-sheet";
 import HiddenMenu from "./hidden-menu";
 
 const Navbar = () => {
-  const optionClassName =
-    "uppercase text-sm font-semibold text-gray-400 cursor-pointer hover:text-teal-800 py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:bg-teal-500 after:h-[2px] hover:after:w-full after:transition-all after:duration-300 after:ease-in-out";
+  const optionClassName = ({ isActive }) =>
+    `uppercase text-sm font-semibold text-gray-400 cursor-pointer hover:text-teal-800 py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:bg-teal-500 after:h-[2px] hover:after:w-full after:transition-all after:duration-300 after:ease-in-out ${
+      isActive && "text-teal-700"
+    }`;
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item1">
         <div className="flex justify-between lg:justify-evenly my-[30px] mx-5 px-10 lg:px-0">
-          <Link to="/" className="flex items-center w-[112px]">
+          <NavLink to="/" className="flex items-center w-[112px]">
             <img src="/logo.png" alt="Logo" />
-          </Link>
+          </NavLink>
           <div className="hidden lg:flex items-center justify-between w-max gap-5">
-            <Link to="/" className={optionClassName}>
+            <NavLink to="/" className={optionClassName}>
               home
-            </Link>
-            <Link to="products" className={optionClassName}>
+            </NavLink>
+            <NavLink to="products" className={optionClassName}>
               our Products
-            </Link>
-            <Link to="blog" className={optionClassName}>
+            </NavLink>
+            <NavLink to="blog" className={optionClassName}>
               blogs
-            </Link>
-            <Link to="about" className={optionClassName}>
+            </NavLink>
+            <NavLink to="about" className={optionClassName}>
               about
-            </Link>
-            <Link to="contact" className={optionClassName}>
+            </NavLink>
+            <NavLink to="contact" className={optionClassName}>
               contact
-            </Link>
-            <Link to="styleguilde" className={optionClassName}>
-              styleguilde
-            </Link>
+            </NavLink>
+            <NavLink to="style-guide" className={optionClassName}>
+              styleguide
+            </NavLink>
           </div>
           <div className="flex gap-5">
             <NavbarSheet />

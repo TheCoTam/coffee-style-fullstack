@@ -21,8 +21,8 @@ const HiddenMenu = () => {
       <Link to="contact" className={optionClassName}>
         contact
       </Link>
-      <Link to="styleguilde" className={optionClassName}>
-        styleguilde
+      <Link to="style-guide" className={optionClassName}>
+        styleguide
       </Link>
     </div>
   );
