@@ -8,7 +8,7 @@ const header = [
   },
   {
     name: "Coffee Mugs",
-    value: "cpffee-mugs",
+    value: "coffee-mugs",
     description:
       "Needless to say it’s very important, content is king and people are beginning to understand that.",
   },

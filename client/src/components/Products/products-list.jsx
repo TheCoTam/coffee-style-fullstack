@@ -1,4 +1,4 @@
-import MoreProductsItem from "../home/more-products-item";
+import MoreProductsItem from "@/components/home/more-products-item";
 import SkeletonItem from "./SkeletonItem";
 import Slider from "./slider";
 import { more_products_data as products } from "@/data/pseudo-data-home";
@@ -17,8 +17,8 @@ const ProductsList = () => {
     <div className="flex flex-col items-center gap-10 w-full">
       <Slider />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-5 px-3">
-        {products.map((item) => (
-          <MoreProductsItem key={item.id} {...item} />
+        {products.map((item, index) => (
+          <MoreProductsItem key={index} {...item} />
         ))}
       </div>
     </div>
