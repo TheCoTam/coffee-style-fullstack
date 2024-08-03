@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import AboutContent from "@/components/home/about-content";
 import FeaturedMugs from "@/components/home/featured-mugs";
 import HeaderContent from "@/components/home/header-content";
@@ -17,7 +16,6 @@ const HomePage = () => {
       <Magazine />
       <Parallax />
       <HomeBlog />
-      <Footer />
     </div>
   );
 };
