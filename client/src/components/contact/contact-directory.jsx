@@ -1,19 +1,19 @@
 const DIRECTORY = [
   {
     title: "PRESS",
-    name: "The Anh",
+    name: "Hoang The Anh",
     phone: "+84 123 456 789",
     email: "example@gmail.com",
   },
   {
     title: "MANAGEMENT",
-    name: "The Anh",
+    name: "The Co Tam",
     phone: "+84 123 456 789",
     email: "example@gmail.com",
   },
   {
     title: "SUPPORT",
-    name: "The Anh",
+    name: "Cter Thien Lanh",
     phone: "+84 123 456 789",
     email: "example@gmail.com",
   },
@@ -27,11 +27,11 @@ const ContactDirectory = () => {
         <p className="uppercase font-semibold">directory</p>
         <p>____</p>
       </div>
-      <div className="flex flex-col gap-5 w-[80%]">
+      <div className="flex flex-col gap-10 md:gap-5 w-[80%]">
         {DIRECTORY.map((person, index) => (
           <div
             key={index}
-            className="grid grid-cols-3 text-center gap-5 text-gray-500"
+            className="flex flex-col md:grid md:grid-cols-3 text-center gap-5 text-gray-500"
           >
             <p className="font-semibold text-sm">{person.title}</p>
             <p className="text-lg">{person.name}</p>

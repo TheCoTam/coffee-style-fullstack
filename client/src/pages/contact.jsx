@@ -5,7 +5,7 @@ import ContactSubscribe from "@/components/contact/contact-subscribe";
 
 const Contact = () => {
   return (
-    <div className="min-h-[calc(100vh-28px)] flex flex-col items-center gap-14">
+    <div className="min-h-[calc(100vh-28px)] flex flex-col items-center gap-14 my-[30px]">
       <ContactAddress />
       <ContactForm />
       <ContactDirectory />
