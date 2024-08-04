@@ -10,7 +10,10 @@ import SliderItem from "./slider-item";
 
 const Slider = () => {
   return (
-    <Carousel opts={{ loop: true }} className="w-[70%] sm:w-[80%]">
+    <Carousel
+      opts={{ loop: true }}
+      className="w-[70%] sm:w-[80%] animate-float-in"
+    >
       <CarouselContent>
         {blog_data.map((item, index) => (
           <CarouselItem key={index}>

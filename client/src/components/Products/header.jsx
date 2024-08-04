@@ -47,7 +47,7 @@ const ProductsHeader = () => {
   });
 
   return (
-    <div className="flex flex-col items-center text-center gap-5 mt-[30px]">
+    <div className="flex flex-col items-center text-center gap-5 mt-[30px] animate-float-in">
       <p className="text-3xl font-semibold">{name}</p>
       <p className="text-gray-500">{description}</p>
       <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full">
