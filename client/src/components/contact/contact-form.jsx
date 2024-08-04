@@ -33,7 +33,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="w-[85%] border-2 border-gray-200 py-[30px] md:py-[40px] lg:py-[50px] px-[20px] md:px-[30px] lg:px-[40px] flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between">
+    <div className="w-[85%] border-2 border-gray-200 py-[30px] md:py-[40px] lg:py-[50px] px-[20px] md:px-[30px] lg:px-[40px] flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between animate-float-in">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

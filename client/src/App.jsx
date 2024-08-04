@@ -9,6 +9,7 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import StyleGuide from "@/pages/style-guide";
 import Footer from "@/components/footer";
+import ScrollToTopButton from "@/components/scroll-to-top-button";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/style-guide" element={<StyleGuide />} />
       </Routes>
       <Footer />
+      <ScrollToTopButton />
       <Toaster />
     </div>
   );

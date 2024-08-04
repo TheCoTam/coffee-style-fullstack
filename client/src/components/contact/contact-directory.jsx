@@ -21,7 +21,7 @@ const DIRECTORY = [
 
 const ContactDirectory = () => {
   return (
-    <div className="flex flex-col items-center gap-10 w-full">
+    <div className="flex flex-col items-center gap-10 w-full animate-float-in">
       <div className="flex items-center text-gray-400">
         <p>____</p>
         <p className="uppercase font-semibold">directory</p>

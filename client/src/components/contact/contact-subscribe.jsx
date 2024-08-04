@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 
 const ContactSubscribe = () => {
   return (
-    <div className="bg-slate-800 w-full md:w-[95%] flex flex-col gap-8 items-center justify-center py-[50px]">
+    <div className="bg-slate-800 w-full md:w-[95%] flex flex-col gap-8 items-center justify-center py-[50px] animate-float-in">
       <div className="flex items-center text-gray-400">
         <p>____</p>
         <p className="uppercase font-semibold">
