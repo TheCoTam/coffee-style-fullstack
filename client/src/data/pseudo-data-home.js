@@ -6,7 +6,7 @@ export const mugs_data = [
     price: 15000,
   },
   {
-    id: "pink-premium-ceramic",
+    id: "pink-premium-ceramic2",
     name: "Pink Premium Ceramic",
     image_url: "/test-product-image.jpg",
     price: 15000,
@@ -122,14 +122,14 @@ export const blog_data = [
       "It is a paradisematic country, in which roasted parts of sentences fly into your mouth.",
   },
   {
-    id: "1",
+    id: "2",
     image_url: "/test-product-image.jpg",
     title: "How long does a cup of coffee keep you awake?",
     description:
       "It is a paradisematic country, in which roasted parts. Vel qui et ad voluptatem.",
   },
   {
-    id: "1",
+    id: "3",
     image_url: "/test-product-image.jpg",
     title:
       "Recent research suggests that heavy coffee drinkers may reap health benefits.",
