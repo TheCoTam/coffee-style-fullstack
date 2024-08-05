@@ -4,7 +4,7 @@ import "dotenv/config";
 
 import { connectDB } from "./config/db.js";
 import mugRouter from "./routes/mug-route.js";
-import postRouter from "./routes/post-router.js";
+import postRouter from "./routes/post-route.js";
 
 // app config
 const app = express();

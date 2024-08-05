@@ -56,6 +56,12 @@ export const addMug = async (req, res) => {
 // remove mug item
 export const removeMug = async (req, res) => {
   try {
+    const id = req.body.id;
+
+    if (!id) {
+      res.json({ success: false, message: "Missing mug id" });
+    }
+
     const mug = await mugModel.findById(req.body.id);
     if (!mug) {
       return res.json({ success: false, message: "Mug not found" });

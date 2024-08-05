@@ -36,14 +36,22 @@ export const removePost = async (req, res) => {
       res.json({ success: false, message: "Missing post id" });
     }
 
-    const post = postModel.findById(id);
+    const post = await postModel.findById(id);
     if (!post) {
       res.json({ success: false, message: "Post not found" });
     }
+    console.log(post);
 
-    fs.unlink(`uploads/${mug.image_url}`, () => {});
+    fs.unlink(`uploads/${post.image_url}`, (err) => {
+      if (err) {
+        console.error("Failed to remove image:", err);
+        res.json({ success: false, message: "Failed to remove image" });
+      } else {
+        console.log("Image removed");
+      }
+    });
 
-    post.remove();
+    await postModel.findByIdAndDelete(id);
     res.json({ success: true, message: "Post removed" });
   } catch (error) {
     console.log("[remove-post]", error);
