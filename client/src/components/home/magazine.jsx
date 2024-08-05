@@ -29,18 +29,18 @@ const Magazine = () => {
         </div>
         <div className="flex gap-2 sm:gap-5 justify-center">
           <img
-            src="/test-product-image.jpg"
+            src="/magazine1.jpg"
             alt="product"
             className="w-2/3 sm:w-[280px] h-[240px] sm:h-[280px] object-cover"
           />
           <div className="flex flex-col gap-[10px] sm:gap-5 h-full shrink-0 w-1/3 sm:w-auto">
             <img
-              src="/test-product-image.jpg"
+              src="/magazine2.jpg"
               alt="product"
               className="w-full sm:w-[160px] h-[115px] sm:h-[130px] object-cover"
             />
             <img
-              src="/test-product-image.jpg"
+              src="/magazine3.jpg"
               alt="product"
               className="w-full sm:w-[160px] h-[115px] sm:h-[130px] object-cover"
             />

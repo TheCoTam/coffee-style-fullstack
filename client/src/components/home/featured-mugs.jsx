@@ -1,4 +1,3 @@
-import { mugs_data } from "@/data/pseudo-data-home";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
