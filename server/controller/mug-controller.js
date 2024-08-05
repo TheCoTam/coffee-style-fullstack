@@ -4,19 +4,45 @@ import fs from "fs";
 // add mug item
 export const addMug = async (req, res) => {
   try {
+    const {
+      name,
+      description,
+      detail,
+      price,
+      length,
+      height,
+      width,
+      weight,
+      category,
+    } = req.body;
+
+    if (
+      !name ||
+      !description ||
+      !detail ||
+      !price ||
+      !length ||
+      !height ||
+      !width ||
+      !weight ||
+      !category
+    ) {
+      return res.json({ success: false, message: "Some fields are missing" });
+    }
+
     let image_url = `${req.file.filename}`;
 
     const mug = new mugModel({
-      name: req.body.name,
-      description: req.body.description,
-      detail: req.body.detail,
+      name,
+      description,
+      detail,
       image_url,
-      price: req.body.price,
-      length: req.body.length,
-      height: req.body.height,
-      width: req.body.width,
-      weight: req.body.weight,
-      category: req.body.category,
+      price,
+      length,
+      height,
+      width,
+      weight,
+      category,
     });
 
     await mug.save();
@@ -30,13 +56,10 @@ export const addMug = async (req, res) => {
 // remove mug item
 export const removeMug = async (req, res) => {
   try {
-    console.log(req.body.id);
-
     const mug = await mugModel.findById(req.body.id);
     if (!mug) {
       return res.json({ success: false, message: "Mug not found" });
     }
-    console.log(mug);
 
     fs.unlink(`uploads/${mug.image_url}`, () => {});
 
