@@ -1,7 +1,7 @@
 export const MUG_CATEGORIES = [
   {
     value: "coffee-mug",
-    label: "Coffee Mug",
+    label: "Coffee Mugs",
   },
   {
     value: "others",

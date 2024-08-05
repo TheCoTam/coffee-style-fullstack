@@ -11,3 +11,14 @@ export function formatPrice(price) {
 
   return `${formattedNumber} đ`;
 }
+
+export function formatDate(time) {
+  const date = new Date(time);
+  const day = date.getDate();
+  const monthNames = date.toLocaleString("en-US", {
+    month: "long",
+  });
+  const year = date.getFullYear();
+
+  return `${day} ${monthNames} ${year}`;
+}

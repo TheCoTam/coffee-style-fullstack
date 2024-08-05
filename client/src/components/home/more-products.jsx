@@ -19,7 +19,7 @@ const MoreProducts = () => {
         }
       } catch (error) {
         console.log("[featured-mugs]", error);
-        toast.error("Something went wrong with the featured mugs");
+        toast.error("Something went wrong with the more products");
       }
     }
 
