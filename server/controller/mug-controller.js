@@ -99,7 +99,14 @@ export const moreMugs = async (req, res) => {
 // all mugs
 export const allMugs = async (req, res) => {
   try {
-    const mugs = await mugModel.find();
+    const category = req.params.category;
+
+    if (category === "all") {
+      const mugs = await mugModel.find();
+      return res.json({ success: true, data: mugs });
+    }
+
+    const mugs = await mugModel.find({ category });
 
     res.json({ success: true, data: mugs });
   } catch (error) {

@@ -25,6 +25,6 @@ mugRouter.post("/add", upload.single("image_url"), addMug);
 mugRouter.delete("/remove", removeMug);
 mugRouter.get("/featured", featuredMug);
 mugRouter.get("/more-products", moreMugs);
-mugRouter.get("/all", allMugs);
+mugRouter.get("/all/:category", allMugs);
 
 export default mugRouter;
