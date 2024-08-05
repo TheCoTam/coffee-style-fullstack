@@ -28,7 +28,6 @@ export const addMug = async (req, res) => {
 };
 
 // remove mug item
-
 export const removeMug = async (req, res) => {
   try {
     console.log(req.body.id);
@@ -46,6 +45,42 @@ export const removeMug = async (req, res) => {
     res.json({ success: true, message: "Mug removed" });
   } catch (error) {
     console.log("[remove-mug]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// featured mug items
+export const featuredMug = async (req, res) => {
+  try {
+    const mugs = await mugModel.aggregate([{ $sample: { size: 2 } }]);
+
+    res.json({ success: true, data: mugs });
+  } catch (error) {
+    console.log("[featured-mug]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// more products
+export const moreMugs = async (req, res) => {
+  try {
+    const mugs = await mugModel.aggregate([{ $sample: { size: 9 } }]);
+
+    res.json({ success: true, data: mugs });
+  } catch (error) {
+    console.log("[more-mugs]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// all mugs
+export const allMugs = async (req, res) => {
+  try {
+    const mugs = await mugModel.find();
+
+    res.json({ success: true, data: mugs });
+  } catch (error) {
+    console.log("[all-mugs]", error);
     res.json({ success: false, message: "Internal server error" });
   }
 };
