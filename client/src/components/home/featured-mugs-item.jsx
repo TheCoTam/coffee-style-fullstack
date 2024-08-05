@@ -2,12 +2,12 @@ import { formatPrice } from "@/lib/utils";
 import { Link } from "react-router-dom";
 
 const FeaturedMugsItem = ({ id, image_url, name, price }) => {
-  // TODO: fetchAPI mugs data
+  const url = import.meta.env.VITE_BACKEND_URL;
   return (
     <div className="flex flex-col items-center gap-8">
       <div className="group relative">
         <img
-          src={image_url}
+          src={url + "/images/" + image_url}
           alt={name}
           className="sm:w-[460px] sm:h-[550px] object-cover"
         />

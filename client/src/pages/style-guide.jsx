@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MUG_CATEGORIES } from "@/data/mug-categories";
+import { useNavigate } from "react-router-dom";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -49,6 +50,7 @@ const formSchema = z.object({
 });
 
 const StyleGuide = () => {
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const form = useForm({
@@ -74,12 +76,13 @@ const StyleGuide = () => {
       for (const key in value) {
         formData.append(key, value[key]);
       }
+      console.log(formData);
 
       const response = await axios.post(url + "/api/mug/add", formData);
 
       if (response.data.success) {
         toast.success(response.data.message);
-        form.reset();
+        navigate("/");
       } else {
         toast.error(response.data.message);
       }
