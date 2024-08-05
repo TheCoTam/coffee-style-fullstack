@@ -1,0 +1,52 @@
+import postModel from "../models/post-model.js";
+import fs from "fs";
+
+// add post item
+export const addPost = async (req, res) => {
+  try {
+    const { title, description, content } = req.body;
+
+    if (!title || !description || !content) {
+      res.json({ success: false, message: "Some fields are missing" });
+    }
+
+    let image_url = `${req.file.filename}`;
+
+    const post = new postModel({
+      title,
+      description,
+      content,
+      image_url,
+    });
+
+    post.save();
+    res.json({ success: true, message: "Post Added" });
+  } catch (error) {
+    console.log("[add-post]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// remove post item
+export const removePost = async (req, res) => {
+  try {
+    const id = req.body.id;
+
+    if (!id) {
+      res.json({ success: false, message: "Missing post id" });
+    }
+
+    const post = postModel.findById(id);
+    if (!post) {
+      res.json({ success: false, message: "Post not found" });
+    }
+
+    fs.unlink(`uploads/${mug.image_url}`, () => {});
+
+    post.remove();
+    res.json({ success: true, message: "Post removed" });
+  } catch (error) {
+    console.log("[remove-post]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
