@@ -9,11 +9,7 @@ const AboutHeader = () => {
         libero vitae erat.
       </p>
       <div className="flex items-center justify-center w-[70%] h-[400px] overflow-hidden animate-float-in">
-        <img
-          src="test-product-image.jpg"
-          alt="image"
-          className="object-cover"
-        />
+        <img src="about1.jpg" alt="image" className="object-cover" />
       </div>
     </div>
   );

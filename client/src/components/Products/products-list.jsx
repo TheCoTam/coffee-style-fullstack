@@ -8,7 +8,6 @@ import SkeletonItem from "./SkeletonItem";
 import Slider from "./slider";
 
 const ProductsList = () => {
-  const url = import.meta.env.VITE_BACKEND_URL;
   const [products, setProducts] = useState([]);
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category") || "all";
@@ -16,6 +15,7 @@ const ProductsList = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
+        const url = import.meta.env.VITE_BACKEND_URL;
         const response = await axios.get(url + "/api/mug/all/" + category);
 
         if (response.data.success) {

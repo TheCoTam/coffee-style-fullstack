@@ -10,6 +10,7 @@ import Contact from "@/pages/contact";
 import StyleGuide from "@/pages/style-guide";
 import Footer from "@/components/footer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
+import BlogId from "@/pages/blogId";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:blogId" element={<BlogId />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/style-guide" element={<StyleGuide />} />

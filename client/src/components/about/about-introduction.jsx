@@ -33,7 +33,7 @@ const AboutIntroduction = () => {
           </p>
         </div>
         <div className="flex items-center justify-center overflow-hidden w-[460px] h-[380px]">
-          <img src="/test-product-image.jpg" alt="" className="object-cover" />
+          <img src="/about2.jpg" alt="" className="object-cover" />
         </div>
       </div>
       <div className="flex w-[80%] gap-10 items-center">
@@ -50,7 +50,7 @@ const AboutIntroduction = () => {
           </p>
         </div>
         <div className="flex items-center justify-center overflow-hidden w-[460px] h-[380px]">
-          <img src="/test-product-image.jpg" alt="" className="object-cover" />
+          <img src="/about3.jpg" alt="" className="object-cover" />
         </div>
       </div>
     </div>
