@@ -76,7 +76,6 @@ const CreateMug = () => {
       for (const key in value) {
         formData.append(key, value[key]);
       }
-      console.log(formData);
 
       const response = await axios.post(url + "/api/mug/add", formData);
 
@@ -102,7 +101,7 @@ const CreateMug = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5 w-[50%]"
+          className="flex flex-col gap-5 w-[95%] sm:w[80%] md:w-[70%] lg:w-[60%]"
         >
           <FormField
             control={form.control}
@@ -165,27 +164,57 @@ const CreateMug = () => {
               required
             />
           </div>
-          <FormField
-            control={form.control}
-            name="price"
-            render={({ field }) => (
-              <FormItem>
-                <p>Price</p>
-                <FormControl>
-                  <Input
+          <div className="grid grid-cols-2 gap-5 md:gap-10">
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <p>Price</p>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      type="number"
+                      placeholder="120000"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <p>Category</p>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
                     disabled={loading}
-                    type="number"
-                    placeholder="120000"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {MUG_CATEGORIES.map((category) => (
+                        <SelectItem key={category.value} value={category.value}>
+                          {category.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <div>
             <p>Dimensions:</p>
-            <div className="space-y-3 pl-5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               <FormField
                 control={form.control}
                 name="length"
@@ -264,34 +293,6 @@ const CreateMug = () => {
               />
             </div>
           </div>
-          <FormField
-            control={form.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem>
-                <p>Category</p>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={loading}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {MUG_CATEGORIES.map((category) => (
-                      <SelectItem key={category.value} value={category.value}>
-                        {category.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <Button disabled={loading}>Create Mug</Button>
         </form>
       </Form>
