@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CreateMug from "@/components/style-guild/create-mug";
 import ViewMugs from "@/components/style-guild/view-mugs";
 import CreatePost from "@/components/style-guild/create-post";
+import ViewPosts from "@/components/style-guild/view-posts";
 
 const StyleGuide = () => {
   return (
@@ -21,6 +22,9 @@ const StyleGuide = () => {
         </TabsContent>
         <TabsContent value="view-mugs">
           <ViewMugs />
+        </TabsContent>
+        <TabsContent value="view-posts">
+          <ViewPosts />
         </TabsContent>
         <TabsContent value="create-post">
           <CreatePost />

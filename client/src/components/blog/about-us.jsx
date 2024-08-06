@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import { CATEGORY } from "@/data/post-categories";
+import { POST_CATEGORIES } from "@/data/post-categories";
 
 const AboutUs = () => {
   const handleClick = (category) => {
@@ -31,13 +31,13 @@ const AboutUs = () => {
         <p className="text-lg text-gray-700">Category</p>
         <hr />
         <div className="space-y-3">
-          {CATEGORY.map((category, index) => (
+          {POST_CATEGORIES.map((category, index) => (
             <button
               key={index}
               className="w-full text-start border-l-2 border-teal-300 hover:border-teal-500 px-3 py-1 hover:bg-teal-100 rounded-r-md cursor-pointer"
-              onClick={() => handleClick(category)}
+              onClick={() => handleClick(category.value)}
             >
-              {category}
+              {category.label}
             </button>
           ))}
         </div>

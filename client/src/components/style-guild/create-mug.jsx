@@ -293,7 +293,9 @@ const CreateMug = () => {
               />
             </div>
           </div>
-          <Button disabled={loading}>Create Mug</Button>
+          <Button size="lg" className="w-max self-center" disabled={loading}>
+            Create Mug
+          </Button>
         </form>
       </Form>
     </div>

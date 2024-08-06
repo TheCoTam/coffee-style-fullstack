@@ -19,33 +19,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MUG_CATEGORIES } from "@/data/mug-categories";
+import { POST_CATEGORIES } from "@/data/post-categories";
 import { useNavigate } from "react-router-dom";
+import Editor from "../editor";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  title: z.string().min(1, { message: "Title is required" }),
   description: z.string().min(1, { message: "Description is required" }),
-  detail: z.string().min(1, { message: "Detail is required" }),
-  price: z
-    .string()
-    .refine((value) => Number(value) > 0, { message: "Invalid number" }),
-  length: z
-    .string()
-    .refine((value) => Number(value) > 0, { message: "Invalid number" }),
-  height: z
-    .string()
-    .refine((value) => Number(value) > 0, { message: "Invalid number" }),
-  width: z
-    .string()
-    .refine((value) => Number(value) > 0, { message: "Invalid number" }),
-  weight: z
-    .string()
-    .refine((value) => Number(value) > 0, { message: "Invalid number" }),
+  content: z.string().min(1, { message: "Content is required" }),
   category: z.string(),
 });
 
@@ -56,14 +41,9 @@ const CreatePost = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      title: "",
       description: "",
-      detail: "",
-      price: "",
-      length: "",
-      height: "",
-      width: "",
-      weight: "",
+      content: "",
       category: "",
     },
   });
@@ -76,9 +56,8 @@ const CreatePost = () => {
       for (const key in value) {
         formData.append(key, value[key]);
       }
-      console.log(formData);
 
-      const response = await axios.post(url + "/api/mug/add", formData);
+      const response = await axios.post(url + "/api/post/add", formData);
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -87,7 +66,7 @@ const CreatePost = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log("[add-mug]", error);
+      console.log("[add-post]", error);
       toast.error("Something went wrong");
     } finally {
       setLoading(false);
@@ -102,18 +81,18 @@ const CreatePost = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5 w-[50%]"
+          className="flex flex-col gap-5 w-[95%] sm:w[80%] md:w-[70%] lg:w-[60%]"
         >
           <FormField
             control={form.control}
-            name="name"
+            name="title"
             render={({ field }) => (
               <FormItem>
-                <p>Name</p>
+                <p>Title</p>
                 <FormControl>
                   <Input
                     disabled={loading}
-                    placeholder="Pink Premium Ceramic"
+                    placeholder="Recent research suggests that heavy coffee drinkers may reap health benefits."
                     {...field}
                   />
                 </FormControl>
@@ -138,23 +117,6 @@ const CreatePost = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="detail"
-            render={({ field }) => (
-              <FormItem>
-                <p>Detail</p>
-                <FormControl>
-                  <Textarea
-                    disabled={loading}
-                    placeholder="A et quia qui quia."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <div className="space-y-2">
             <p>Image</p>
             <Input
@@ -164,105 +126,6 @@ const CreatePost = () => {
               onChange={(e) => setImage(e.target.files[0])}
               required
             />
-          </div>
-          <FormField
-            control={form.control}
-            name="price"
-            render={({ field }) => (
-              <FormItem>
-                <p>Price</p>
-                <FormControl>
-                  <Input
-                    disabled={loading}
-                    type="number"
-                    placeholder="120000"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div>
-            <p>Dimensions:</p>
-            <div className="space-y-3 pl-5">
-              <FormField
-                control={form.control}
-                name="length"
-                render={({ field }) => (
-                  <FormItem
-                    disabled={loading}
-                    className="flex items-center gap-3"
-                  >
-                    <p className="shrink-0 text-gray-500 text-sm">
-                      Length (in)
-                    </p>
-                    <FormControl>
-                      <Input type="number" placeholder="10" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="height"
-                render={({ field }) => (
-                  <FormItem className="flex items-center gap-3">
-                    <p className="shrink-0 text-gray-500 text-sm">
-                      Height (in)
-                    </p>
-                    <FormControl>
-                      <Input
-                        disabled={loading}
-                        type="number"
-                        placeholder="10"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="width"
-                render={({ field }) => (
-                  <FormItem className="flex items-center gap-3">
-                    <p className="shrink-0 text-gray-500 text-sm">Width (in)</p>
-                    <FormControl>
-                      <Input
-                        disabled={loading}
-                        type="number"
-                        placeholder="10"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="weight"
-                render={({ field }) => (
-                  <FormItem className="flex items-center gap-3">
-                    <p className="shrink-0 text-gray-500 text-sm">
-                      Weight (oz)
-                    </p>
-                    <FormControl>
-                      <Input
-                        disabled={loading}
-                        type="number"
-                        placeholder="20"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
           </div>
           <FormField
             control={form.control}
@@ -281,7 +144,7 @@ const CreatePost = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {MUG_CATEGORIES.map((category) => (
+                    {POST_CATEGORIES.map((category) => (
                       <SelectItem key={category.value} value={category.value}>
                         {category.label}
                       </SelectItem>
@@ -292,7 +155,22 @@ const CreatePost = () => {
               </FormItem>
             )}
           />
-          <Button disabled={loading}>Create Mug</Button>
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <FormItem>
+                <p>Content</p>
+                <FormControl>
+                  <Editor disabled={loading} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button size="lg" className="w-max self-center" disabled={loading}>
+            Create Mug
+          </Button>
         </form>
       </Form>
     </div>
