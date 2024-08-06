@@ -59,7 +59,7 @@ export const removeMug = async (req, res) => {
     const id = req.body.id;
 
     if (!id) {
-      res.json({ success: false, message: "Missing mug id" });
+      return res.json({ success: false, message: "Missing mug id" });
     }
 
     const mug = await mugModel.findById(req.body.id);
@@ -67,7 +67,12 @@ export const removeMug = async (req, res) => {
       return res.json({ success: false, message: "Mug not found" });
     }
 
-    fs.unlink(`uploads/${mug.image_url}`, () => {});
+    fs.unlink(`uploads/${mug.image_url}`, (err) => {
+      if (err) {
+        console.error("Failed to remove image:", err);
+        return res.json({ success: false, message: "Failed to remove image" });
+      }
+    });
 
     await mugModel.findByIdAndDelete(req.body.id);
 
@@ -106,6 +111,10 @@ export const moreMugs = async (req, res) => {
 export const allMugs = async (req, res) => {
   try {
     const category = req.params.category;
+
+    if (!category) {
+      return res.json({ success: false, message: "Missing category" });
+    }
 
     if (category === "all") {
       const mugs = await mugModel.find();

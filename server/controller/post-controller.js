@@ -7,7 +7,7 @@ export const addPost = async (req, res) => {
     const { title, description, content, category } = req.body;
 
     if (!title || !description || !content || !category || !req.file) {
-      res.json({ success: false, message: "Some fields are missing" });
+      return res.json({ success: false, message: "Some fields are missing" });
     }
 
     let image_url = `${req.file.filename}`;
@@ -34,21 +34,19 @@ export const removePost = async (req, res) => {
     const id = req.body.id;
 
     if (!id) {
-      res.json({ success: false, message: "Missing post id" });
+      return res.json({ success: false, message: "Missing post id" });
     }
 
     const post = await postModel.findById(id);
     if (!post) {
-      res.json({ success: false, message: "Post not found" });
+      return res.json({ success: false, message: "Post not found" });
     }
     console.log(post);
 
     fs.unlink(`uploads/${post.image_url}`, (err) => {
       if (err) {
         console.error("Failed to remove image:", err);
-        res.json({ success: false, message: "Failed to remove image" });
-      } else {
-        console.log("Image removed");
+        return res.json({ success: false, message: "Failed to remove image" });
       }
     });
 
@@ -56,6 +54,28 @@ export const removePost = async (req, res) => {
     res.json({ success: true, message: "Post removed" });
   } catch (error) {
     console.log("[remove-post]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// get post item
+export const getPost = async (req, res) => {
+  try {
+    const category = req.params.category;
+    if (!category) {
+      return res.json({ success: false, message: "Missing category" });
+    }
+
+    if (category === "all") {
+      const posts = await postModel.find();
+      return res.json({ success: true, data: posts });
+    }
+
+    const posts = await postModel.find({ category });
+
+    res.json({ success: true, data: posts });
+  } catch (error) {
+    console.log("[get-post]", error);
     res.json({ success: false, message: "Internal server error" });
   }
 };
