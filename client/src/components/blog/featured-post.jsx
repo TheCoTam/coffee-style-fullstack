@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Frown } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -34,9 +35,10 @@ const FeaturedPost = () => {
         <p>____</p>
       </div>
       {posts.length === 0 && (
-        <p className="text-2xl text-gray-400">
-          It seem we haven&apos;t have any posts yet
-        </p>
+        <div className="text-2xl text-gray-500 text-center w-full">
+          It&apos;s seem that we haven&apos;t had any posts yet.{" "}
+          <Frown className="inline" />
+        </div>
       )}
       <div className="flex flex-col lg:flex-row gap-14 lg:gap-5 justify-center w-full lg:w-[940px]">
         {posts.map((post, index) => (
@@ -45,7 +47,7 @@ const FeaturedPost = () => {
               <img
                 src={url + "/images/" + post.image_url}
                 alt="blog"
-                className="object-cover h-full"
+                className="object-cover w-full h-full"
               />
               <Link
                 to={"/blog/" + post.id}

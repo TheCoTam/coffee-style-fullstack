@@ -56,7 +56,7 @@ const ViewMugs = () => {
                 <img
                   src={url + "/images/" + mug.image_url}
                   alt={mug.name}
-                  className="object-cover h-full"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex-1 flex flex-col gap-3 md:gap-5">
