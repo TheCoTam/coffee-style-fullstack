@@ -50,7 +50,7 @@ const ViewMugs = () => {
             <Link
               to={"/product/" + mug._id}
               key={mug._id}
-              className="flex flex-col md:flex-row gap-5 w-[98%] px-[50px] border-2 border-teal-100 p-2 rounded-md shadow-sm"
+              className="flex flex-col md:flex-row gap-5 w-[98%] border-2 border-teal-100 p-4 rounded-md shadow-sm"
             >
               <div className="flex items-center justify-center overflow-hidden w-full md:w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] rounded-md">
                 <img
