@@ -103,3 +103,21 @@ export const homePosts = async (req, res) => {
     res.json({ success: false, message: "Internal server error" });
   }
 };
+
+// get post by id
+export const getPostById = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+
+    if (!postId) {
+      return res.json({ success: false, message: "Blog id not found" });
+    }
+
+    const post = await postModel.findById(postId);
+
+    res.json({ success: true, data: post });
+  } catch (error) {
+    console.log("[get-post-by-id]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};

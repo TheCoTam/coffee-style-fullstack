@@ -5,6 +5,7 @@ import {
   addPost,
   featuredPosts,
   getPost,
+  getPostById,
   homePosts,
   removePost,
 } from "../controller/post-controller.js";
@@ -26,5 +27,6 @@ postRouter.delete("/remove", removePost);
 postRouter.get("/get/:category", getPost);
 postRouter.get("/featured", featuredPosts);
 postRouter.get("/home-posts", homePosts);
+postRouter.get("/:postId", getPostById);
 
 export default postRouter;
