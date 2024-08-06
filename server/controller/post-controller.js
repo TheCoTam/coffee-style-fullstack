@@ -79,3 +79,27 @@ export const getPost = async (req, res) => {
     res.json({ success: false, message: "Internal server error" });
   }
 };
+
+// featured posts items
+export const featuredPosts = async (req, res) => {
+  try {
+    const posts = await postModel.aggregate([{ $sample: { size: 2 } }]);
+
+    res.json({ success: true, data: posts });
+  } catch (error) {
+    console.log("[featured-posts]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
+// get home posts
+export const homePosts = async (req, res) => {
+  try {
+    const posts = await postModel.aggregate([{ $sample: { size: 3 } }]);
+
+    res.json({ success: true, data: posts });
+  } catch (error) {
+    console.log("[home-posts]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
