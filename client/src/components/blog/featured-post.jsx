@@ -1,7 +1,31 @@
-import { blog_data } from "@/data/pseudo-data-blog";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
+const url = import.meta.env.VITE_BACKEND_URL;
+
 const FeaturedPost = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(url + "/api/post/featured");
+        if (response.data.success) {
+          setPosts(response.data.data);
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        console.log("[featured-posts]", error);
+        toast.error("Something went wrong with the featured posts");
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex flex-col items-center gap-10 w-full animate-float-in">
       <div className="flex items-center text-gray-400">
@@ -9,11 +33,20 @@ const FeaturedPost = () => {
         <p className="uppercase text-sm font-semibold">Featured Post</p>
         <p>____</p>
       </div>
+      {posts.length === 0 && (
+        <p className="text-2xl text-gray-400">
+          It seem we haven&apos;t have any posts yet
+        </p>
+      )}
       <div className="flex flex-col lg:flex-row gap-14 lg:gap-5 justify-center w-full lg:w-[940px]">
-        {blog_data.map((post, index) => (
+        {posts.map((post, index) => (
           <div key={index} className="flex flex-col items-center gap-5">
-            <div className="flex items-center justify-center w-[90%] lg:w-[460px] h-[300px] overflow-hidden relative group">
-              <img src={post.image_url} alt="blog" className="object-cover" />
+            <div className="flex items-center justify-center w-[90%] lg:w-[460px] h-[300px] overflow-hidden relative group rounded-md">
+              <img
+                src={url + "/images/" + post.image_url}
+                alt="blog"
+                className="object-cover h-full"
+              />
               <Link
                 to={"/blog/" + post.id}
                 className="hidden group-hover:flex justify-center group-hover:absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-10 cursor-pointer"

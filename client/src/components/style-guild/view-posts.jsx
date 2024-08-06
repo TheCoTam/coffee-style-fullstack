@@ -56,7 +56,7 @@ const ViewPosts = () => {
                 <img
                   src={url + "/images/" + post.image_url}
                   alt=""
-                  className="object-cover"
+                  className="object-cover h-full"
                 />
               </div>
               <div className="flex-1 flex flex-col gap-3 md:gap-5">

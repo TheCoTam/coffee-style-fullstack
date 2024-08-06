@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { POST_CATEGORIES } from "@/data/post-categories";
 
 const AboutUs = () => {
-  const handleClick = (category) => {
-    toast.success(category);
-  };
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div className="space-y-10 lg:w-1/3">
@@ -35,7 +32,7 @@ const AboutUs = () => {
             <button
               key={index}
               className="w-full text-start border-l-2 border-teal-300 hover:border-teal-500 px-3 py-1 hover:bg-teal-100 rounded-r-md cursor-pointer"
-              onClick={() => handleClick(category.value)}
+              onClick={() => setSearchParams({ category: category.value })}
             >
               {category.label}
             </button>
