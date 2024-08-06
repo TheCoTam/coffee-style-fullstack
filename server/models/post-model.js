@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema(
     description: { type: String, required: true },
     image_url: { type: String, required: true },
     content: { type: String, required: true },
+    category: { type: String, required: true },
   },
   { timestamps: true }
 );

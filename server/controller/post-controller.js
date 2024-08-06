@@ -4,9 +4,9 @@ import fs from "fs";
 // add post item
 export const addPost = async (req, res) => {
   try {
-    const { title, description, content } = req.body;
+    const { title, description, content, category } = req.body;
 
-    if (!title || !description || !content) {
+    if (!title || !description || !content || !category || !req.file) {
       res.json({ success: false, message: "Some fields are missing" });
     }
 
@@ -17,6 +17,7 @@ export const addPost = async (req, res) => {
       description,
       content,
       image_url,
+      category,
     });
 
     post.save();
