@@ -39,7 +39,7 @@ const MoreProducts = () => {
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-5 px-3">
         {moreProducts.map((mug) => (
-          <MoreProductsItem key={mug.id} {...mug} />
+          <MoreProductsItem key={mug._id} {...mug} />
         ))}
       </div>
     </div>

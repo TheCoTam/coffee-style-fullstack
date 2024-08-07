@@ -11,10 +11,12 @@ import StyleGuide from "@/pages/style-guide";
 import Footer from "@/components/footer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import BlogId from "@/pages/blogId";
+import ScrollToTop from "@/components/scroll-to-top";
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />

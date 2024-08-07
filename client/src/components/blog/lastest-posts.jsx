@@ -52,7 +52,7 @@ const LatestPosts = () => {
                 className="object-cover w-full h-full"
               />
               <Link
-                to={"/blog/" + post.id}
+                to={"/blog/" + post._id}
                 className="hidden group-hover:flex justify-center group-hover:absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-10 cursor-pointer"
               >
                 <button className="uppercase text-gray-700 bg-white mt-auto mb-3 w-[90%] h-[40px] animate-fadeIn font-semibold">

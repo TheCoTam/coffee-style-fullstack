@@ -1,7 +1,7 @@
-import { lazy, useMemo } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 
 const Preview = ({ value }) => {
-  const ReactQuill = useMemo(() => lazy(() => import("react-quill")), []);
   return <ReactQuill theme="bubble" value={value} readOnly />;
 };
 
