@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
-const BlogId = () => {
+const BlogDetail = () => {
   const { blogId } = useParams();
   const [post, setPost] = useState({});
 
@@ -57,4 +57,4 @@ const BlogId = () => {
   );
 };
 
-export default BlogId;
+export default BlogDetail;
