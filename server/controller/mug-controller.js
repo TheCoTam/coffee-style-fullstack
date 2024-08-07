@@ -129,3 +129,21 @@ export const allMugs = async (req, res) => {
     res.json({ success: false, message: "Internal server error" });
   }
 };
+
+//  get mug by id
+export const getMugById = async (req, res) => {
+  try {
+    const id = req.params.mugId;
+
+    if (!id) {
+      return res.json({ success: false, message: "Id not found" });
+    }
+
+    const mug = await mugModel.findById(id);
+
+    res.json({ success: true, data: mug });
+  } catch (error) {
+    console.log("[get-mug-by-id]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};

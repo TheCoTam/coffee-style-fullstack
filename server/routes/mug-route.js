@@ -5,6 +5,7 @@ import {
   addMug,
   allMugs,
   featuredMug,
+  getMugById,
   moreMugs,
   removeMug,
 } from "../controller/mug-controller.js";
@@ -26,5 +27,6 @@ mugRouter.delete("/remove", removeMug);
 mugRouter.get("/featured", featuredMug);
 mugRouter.get("/more-products", moreMugs);
 mugRouter.get("/all/:category", allMugs);
+mugRouter.get("/detail/:mugId", getMugById);
 
 export default mugRouter;
