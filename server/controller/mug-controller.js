@@ -95,6 +95,18 @@ export const featuredMug = async (req, res) => {
   }
 };
 
+// featured mug items
+export const take3Mugs = async (req, res) => {
+  try {
+    const mugs = await mugModel.aggregate([{ $sample: { size: 3 } }]);
+
+    res.json({ success: true, data: mugs });
+  } catch (error) {
+    console.log("[featured-mug]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};
+
 // more products
 export const moreMugs = async (req, res) => {
   try {

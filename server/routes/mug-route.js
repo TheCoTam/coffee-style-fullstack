@@ -8,6 +8,7 @@ import {
   getMugById,
   moreMugs,
   removeMug,
+  take3Mugs,
 } from "../controller/mug-controller.js";
 
 const mugRouter = express.Router();
@@ -25,6 +26,7 @@ const upload = multer({ storage: storage });
 mugRouter.post("/add", upload.single("image_url"), addMug);
 mugRouter.delete("/remove", removeMug);
 mugRouter.get("/featured", featuredMug);
+mugRouter.get("/take-3-mugs", take3Mugs);
 mugRouter.get("/more-products", moreMugs);
 mugRouter.get("/all/:category", allMugs);
 mugRouter.get("/detail/:mugId", getMugById);

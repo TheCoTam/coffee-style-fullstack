@@ -41,7 +41,7 @@ const HomeBlog = () => {
           <Frown className="inline" />
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-5 lg:w-[80%] px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-5 lg:w-[90%] px-5">
         {posts.map((blog) => (
           <HomeBlogItem key={blog._id} {...blog} />
         ))}
