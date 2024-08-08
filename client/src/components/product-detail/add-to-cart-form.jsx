@@ -1,5 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
 import {
@@ -11,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import toast from "react-hot-toast";
+import { ProductsContext } from "@/context/ProductsContext";
 
 const formSchema = z.object({
   quantity: z.custom((value) => Number(value) > 0, {
@@ -19,7 +21,8 @@ const formSchema = z.object({
   }),
 });
 
-const AddToCartForm = () => {
+const AddToCartForm = ({ mug }) => {
+  const { addToCart } = useContext(ProductsContext);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,7 +31,9 @@ const AddToCartForm = () => {
   });
 
   const onSubmit = async (value) => {
-    toast.success(value.quantity);
+    addToCart(mug, value.quantity);
+    toast.success("Mug added");
+    form.reset();
   };
 
   return (

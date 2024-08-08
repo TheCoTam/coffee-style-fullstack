@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { ShoppingCart, MessageSquareWarning } from "lucide-react";
+import toast from "react-hot-toast";
 
+import { ProductsContext } from "@/context/ProductsContext";
 import {
   Sheet,
   SheetContent,
@@ -8,12 +11,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-
-import { productsInCart } from "@/data/pseudo-data-navbar";
-import toast from "react-hot-toast";
 import ProductItem from "./product-item";
+import { formatPrice } from "@/lib/utils";
 
 const NavbarSheet = () => {
+  const { productList, cartItems, getTotalCartPrice } =
+    useContext(ProductsContext);
+
   const handleCheckout = () => {
     toast.success("Redirecting to Checkout Page");
   };
@@ -24,8 +28,8 @@ const NavbarSheet = () => {
         <div className="group flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 font-semibold cursor-pointer">
           <ShoppingCart size={20} />
           <p>CART</p>
-          <p className="bg-teal-200 rounded-lg px-1 group-hover:bg-teal-300">
-            {productsInCart.length}
+          <p className="bg-teal-200 rounded-lg px-[5px] group-hover:bg-teal-300">
+            {productList.length}
           </p>
         </div>
       </SheetTrigger>
@@ -37,7 +41,7 @@ const NavbarSheet = () => {
         </SheetHeader>
         <hr />
         <div className="h-[90vh] overflow-hidden">
-          {productsInCart.length === 0 && (
+          {productList.length === 0 && (
             <div className="flex flex-col gap-3 items-center justify-center text-center h-full">
               <MessageSquareWarning size={40} />
               <p className="font-semibold">Your Cart is Empty</p>
@@ -48,16 +52,18 @@ const NavbarSheet = () => {
             </div>
           )}
           <div className="flex flex-col gap-3 overflow-y-auto h-[82%] mt-3">
-            {productsInCart.map((product, index) => (
-              <ProductItem key={index} {...product} />
-            ))}
+            {productList.map((product, index) => {
+              const amount = cartItems[product._id];
+
+              return <ProductItem key={index} {...product} amount={amount} />;
+            })}
           </div>
-          {productsInCart.length !== 0 && (
+          {productList.length !== 0 && (
             <div className="flex flex-col gap-5 mt-3">
               <hr />
               <div className="flex items-center justify-between">
                 <p>Subtotal</p>
-                <p>100000</p>
+                <p>{formatPrice(getTotalCartPrice())}</p>
               </div>
               <Button
                 size="lg"

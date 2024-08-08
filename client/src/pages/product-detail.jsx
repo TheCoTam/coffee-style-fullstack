@@ -60,7 +60,7 @@ const ProductDetail = () => {
           <p className="text-2xl text-red-500">{formatPrice(mug.price)}</p>
           <div className="flex flex-col gap-3 w-full sm:w-auto">
             <p className="uppercase font-semibold text-gray-600">quantity</p>
-            <AddToCartForm />
+            <AddToCartForm mug={mug} />
           </div>
         </div>
       </div>
