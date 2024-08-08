@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
@@ -5,12 +10,10 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { SquareCheck } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -19,6 +22,8 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,8 +34,55 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log(values);
+    setLoading(true);
+    setTimeout(() => {
+      setSubmitted(true);
+      setLoading(false);
+    }, 1000);
   };
+
+  if (submitted) {
+    return (
+      <div className="w-[85%] border-2 border-gray-200 py-[30px] md:py-[40px] lg:py-[50px] px-[20px] md:px-[30px] lg:px-[40px] flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between animate-float-in">
+        <div className="flex flex-col gap-5 md:w-[70%] lg:w-[60%] self-center lg:self-auto text-center lg:text-start">
+          <div className="space-y-2">
+            <p className="uppercase text-xl font-bold text-gray-400">
+              contact form
+            </p>
+            <p className="text-lg">
+              Drop us your message and I&apos;ll get back to you as soon as
+              possible.
+            </p>
+          </div>
+          <div className="bg-slate-200 flex flex-col items-center justify-center gap-2 py-8">
+            <SquareCheck />
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+        </div>
+        <div className="w-auto lg:w-[2px] h-[2px] lg:h-auto border-none bg-gray-200"></div>
+        <div className="flex flex-col gap-10 self-center lg:self-auto text-center lg:text-start">
+          <div className="space-y-3">
+            <p className="uppercase text-xl font-bold text-gray-400">
+              contact form
+            </p>
+            <p>CoffeeStyle. Inc</p>
+            <p>Thanh Xuan</p>
+            <p>Ha Noi</p>
+          </div>
+          <div className="space-y-3">
+            <p className="uppercase text-xl font-bold text-gray-400">call us</p>
+            <p>+1 (415) 555-1212</p>
+          </div>
+          <div className="space-y-3">
+            <p className="uppercase text-xl font-bold text-gray-400">
+              email us
+            </p>
+            <p>hoangnguyenanhtuyen@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-[85%] border-2 border-gray-200 py-[30px] md:py-[40px] lg:py-[50px] px-[20px] md:px-[30px] lg:px-[40px] flex flex-col lg:flex-row gap-5 lg:gap-0 justify-between animate-float-in">
@@ -55,7 +107,7 @@ const ContactForm = () => {
               <FormItem>
                 <p className="font-semibold">Name</p>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="John Doe" {...field} disabled={loading} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -68,7 +120,11 @@ const ContactForm = () => {
               <FormItem>
                 <p className="font-semibold">Email</p>
                 <FormControl>
-                  <Input placeholder="example@gmail.com" {...field} />
+                  <Input
+                    placeholder="example@gmail.com"
+                    {...field}
+                    disabled={loading}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -84,13 +140,17 @@ const ContactForm = () => {
                   <Textarea
                     placeholder="Hi! I would like to ask something about mugs."
                     {...field}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button className="uppercase w-max self-center lg:self-auto">
+          <Button
+            className="uppercase w-max self-center lg:self-auto"
+            disabled={loading}
+          >
             send message
           </Button>
         </form>

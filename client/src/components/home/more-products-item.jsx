@@ -22,7 +22,9 @@ const MoreProductsItem = ({ _id, image_url, name, price }) => {
         </Link>
       </div>
       <div className="flex flex-col gap-3 text-center">
-        <p className="text-2xl font-semibold">{name}</p>
+        <Link to={"/product/" + _id} className="text-2xl font-semibold">
+          {name}
+        </Link>
         <p className="font-semibold text-gray-400">{formatPrice(price)}</p>
       </div>
     </div>
