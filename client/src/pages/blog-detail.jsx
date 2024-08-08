@@ -9,6 +9,7 @@ import Author from "@/components/blog-id/author";
 import BlogContent from "@/components/blog-id/blog-content";
 import FeaturedPost from "@/components/blog/featured-post";
 import { Button } from "@/components/ui/button";
+import BlogDetailSkeleton from "@/components/blog-id/blog-detail-skeleton";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -19,7 +20,8 @@ const BlogDetail = () => {
   useEffect(() => {
     async function fetchPostData() {
       try {
-        const res = await axios.get(url + "/api/post/" + blogId);
+        const res = await axios.get(url + "/api/post/detail/" + blogId);
+        console.log(res.data);
 
         if (res.data.success) {
           setPost(res.data.data);
@@ -34,6 +36,10 @@ const BlogDetail = () => {
 
     fetchPostData();
   }, [blogId]);
+
+  if (!post) {
+    return <BlogDetailSkeleton />;
+  }
 
   return (
     <div className="min-h-[calc(100vh-68px)] flex flex-col my-16 gap-10">

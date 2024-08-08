@@ -27,6 +27,6 @@ postRouter.delete("/remove", removePost);
 postRouter.get("/get/:category", getPost);
 postRouter.get("/featured", featuredPosts);
 postRouter.get("/home-posts", homePosts);
-postRouter.get("/:postId", getPostById);
+postRouter.get("/detail/:postId", getPostById);
 
 export default postRouter;
