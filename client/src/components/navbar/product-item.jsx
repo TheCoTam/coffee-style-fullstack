@@ -9,13 +9,13 @@ const url = import.meta.env.VITE_BACKEND_URL;
 const ProductItem = ({ _id, name, image_url, price, amount }) => {
   const { remove1Quantity, add1Quantity } = useContext(ProductsContext);
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center gap-3">
       <img
         src={url + "/images/" + image_url}
         alt="Product"
         className="w-[80px] rounded-md"
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1">
         <p className="font-semibold">{name}</p>
         <p>{formatPrice(price * amount)}</p>
       </div>

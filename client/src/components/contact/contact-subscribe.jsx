@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { SquareCheck } from "lucide-react";
 
 const ContactSubscribe = () => {
