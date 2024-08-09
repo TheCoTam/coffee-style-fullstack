@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { formatDate } from "@/lib/utils";
 import { POST_CATEGORIES } from "@/data/post-categories";
+import Actions from "./actions";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -34,7 +35,7 @@ const ViewPosts = () => {
   return (
     <div className="flex flex-col items-center my-[50px] gap-16">
       <p className="text-3xl uppercase font-bold text-gray-700">
-        View All Mugs
+        View All Posts
       </p>
       {(!posts || posts.length === 0) && <SkeletonView />}
       <div className="w-full flex flex-col items-center gap-8">
@@ -47,22 +48,30 @@ const ViewPosts = () => {
           });
 
           return (
-            <Link
-              to={"/blog/" + post._id}
+            <div
               key={post._id}
               className="flex flex-col md:flex-row gap-5 w-[98%] border-2 border-teal-100 p-3 rounded-md shadow-sm"
             >
-              <div className="flex items-center justify-center overflow-hidden w-full md:w-[300px] h-[200px] lg:w-[500px] lg:h-[300px] rounded-md">
+              <Link
+                to={"/blog/" + post._id}
+                className="flex items-center justify-center overflow-hidden w-full md:w-[300px] h-[200px] lg:w-[500px] lg:h-[300px] rounded-md"
+              >
                 <img
                   src={url + "/images/" + post.image_url}
                   alt=""
                   className="object-cover w-full h-full"
                 />
-              </div>
+              </Link>
               <div className="flex-1 flex flex-col gap-3 md:gap-5">
-                <p className="text-2xl md:text-3xl font-semibold w-full h-[39px] lg:h-[79px] line-clamp-1 lg:line-clamp-2">
-                  {post.title}
-                </p>
+                <div className="flex gap-5">
+                  <Link
+                    to={"/blog/" + post._id}
+                    className="text-2xl md:text-3xl font-semibold w-full h-[39px] lg:h-[79px] line-clamp-1 lg:line-clamp-2 pr-5"
+                  >
+                    {post.title}
+                  </Link>
+                  <Actions type="post" id={post._id} />
+                </div>
                 <div className="flex gap-3">
                   <p>{formatDate(post.updatedAt)}</p>
                   <div className="w-[3px] h-full bg-gray-100 rounded-md"></div>
@@ -74,7 +83,7 @@ const ViewPosts = () => {
                   </p>
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>

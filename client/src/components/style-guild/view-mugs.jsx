@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { formatPrice, formatDate } from "@/lib/utils";
 import { MUG_CATEGORIES } from "@/data/mug-categories";
+import Actions from "./actions";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -47,22 +48,30 @@ const ViewMugs = () => {
           });
 
           return (
-            <Link
-              to={"/product/" + mug._id}
+            <div
               key={mug._id}
               className="flex flex-col md:flex-row gap-5 w-[98%] border-2 border-teal-100 p-4 rounded-md shadow-sm"
             >
-              <div className="flex items-center justify-center overflow-hidden w-full md:w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] rounded-md">
+              <Link
+                to={"/product/" + mug._id}
+                className="flex items-center justify-center overflow-hidden w-full md:w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] rounded-md"
+              >
                 <img
                   src={url + "/images/" + mug.image_url}
                   alt={mug.name}
                   className="object-cover w-full h-full"
                 />
-              </div>
+              </Link>
               <div className="flex-1 flex flex-col gap-3 md:gap-5">
-                <p className="text-2xl md:text-3xl font-semibold w-full h-[32px] lg:h-[72px]">
-                  {mug.name}
-                </p>
+                <div className="flex gap-5">
+                  <Link
+                    to={"/product/" + mug._id}
+                    className="text-2xl md:text-3xl font-semibold w-full h-[32px] lg:h-[72px]"
+                  >
+                    {mug.name}
+                  </Link>
+                  <Actions type="mug" id={mug._id} />
+                </div>
                 <div className="flex gap-3">
                   <p>{formatDate(mug.updatedAt)}</p>
                   <div className="w-[3px] h-full bg-gray-100 rounded-md"></div>
@@ -77,7 +86,7 @@ const ViewMugs = () => {
                   </p>
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
