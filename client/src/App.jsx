@@ -14,6 +14,7 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import ScrollToTop from "@/components/scroll-to-top";
+import ProductEditPage from "@/pages/product-edit";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
+        <Route path="/product/:productId/edit" element={<ProductEditPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:blogId" element={<BlogDetail />} />
         <Route path="/about" element={<About />} />

@@ -70,7 +70,7 @@ const ViewMugs = () => {
                   >
                     {mug.name}
                   </Link>
-                  <Actions type="mug" id={mug._id} />
+                  <Actions type="product" id={mug._id} />
                 </div>
                 <div className="flex gap-3">
                   <p>{formatDate(mug.updatedAt)}</p>
