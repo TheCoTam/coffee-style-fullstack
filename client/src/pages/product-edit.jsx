@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import DescriptionForm from "@/components/product-edit/description-form";
 import NameForm from "@/components/product-edit/name-form";
 import DetailForm from "@/components/product-edit/detail-form";
+import PriceForm from "@/components/product-edit/price-form";
+import CategoryForm from "@/components/product-edit/category-form";
 
 const ProductEditPage = () => {
   const { productId } = useParams();
@@ -40,6 +42,8 @@ const ProductEditPage = () => {
       <div className="w-[40%] space-y-3">
         <NameForm initialData={mug} productId={productId} />
         <DescriptionForm initialData={mug} productId={productId} />
+        <PriceForm initialData={mug} productId={productId} />
+        <CategoryForm initialData={mug} productId={productId} />
       </div>
       <div className="flex-1">
         <DetailForm initialData={mug} productId={productId} />
