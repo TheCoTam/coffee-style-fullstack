@@ -1,8 +1,10 @@
-import NameForm from "@/components/product-edit/name-form";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+import DescriptionForm from "@/components/product-edit/description-form";
+import NameForm from "@/components/product-edit/name-form";
 
 const ProductEditPage = () => {
   const { productId } = useParams();
@@ -34,8 +36,9 @@ const ProductEditPage = () => {
 
   return (
     <div className="flex gap-10 px-[50px] py-[80px] w-full">
-      <div className="w-[40%]">
+      <div className="w-[40%] space-y-3">
         <NameForm initialData={mug} productId={productId} />
+        <DescriptionForm initialData={mug} productId={productId} />
       </div>
       <div className="flex-1">somthing here tooo</div>
     </div>

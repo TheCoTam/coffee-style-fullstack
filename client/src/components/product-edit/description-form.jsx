@@ -18,12 +18,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  description: z.string().min(1, { message: "Description is required" }),
 });
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
-const NameForm = ({ initialData, productId }) => {
+const DescriptionForm = ({ initialData, productId }) => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const form = useForm({
@@ -54,12 +54,12 @@ const NameForm = ({ initialData, productId }) => {
   return (
     <div className="bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Product Name
+        Product Description
         <Button variant="ghost" onClick={toggleEdit}>
           {!isEditing ? (
             <>
               <Pencil size={18} className="mr-2" />
-              Edit Name
+              Edit description
             </>
           ) : (
             <>
@@ -69,7 +69,7 @@ const NameForm = ({ initialData, productId }) => {
           )}
         </Button>
       </div>
-      {!isEditing && <p>{initialData.name}</p>}
+      {!isEditing && <p>{initialData.description}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -78,13 +78,13 @@ const NameForm = ({ initialData, productId }) => {
           >
             <FormField
               control={form.control}
-              name="name"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Red Love Cup'"
+                      placeholder="e.g. 'Amet suscipit omnis eum necessitatibus quos doloribus.'"
                       {...field}
                     />
                   </FormControl>
@@ -104,4 +104,4 @@ const NameForm = ({ initialData, productId }) => {
   );
 };
 
-export default NameForm;
+export default DescriptionForm;
