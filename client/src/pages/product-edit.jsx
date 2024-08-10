@@ -8,6 +8,7 @@ import NameForm from "@/components/product-edit/name-form";
 import DetailForm from "@/components/product-edit/detail-form";
 import PriceForm from "@/components/product-edit/price-form";
 import CategoryForm from "@/components/product-edit/category-form";
+import DimensionsForm from "@/components/product-edit/dimensions-form";
 
 const ProductEditPage = () => {
   const { productId } = useParams();
@@ -44,6 +45,7 @@ const ProductEditPage = () => {
         <DescriptionForm initialData={mug} productId={productId} />
         <PriceForm initialData={mug} productId={productId} />
         <CategoryForm initialData={mug} productId={productId} />
+        <DimensionsForm initialData={mug} productId={productId} />
       </div>
       <div className="flex-1">
         <DetailForm initialData={mug} productId={productId} />
