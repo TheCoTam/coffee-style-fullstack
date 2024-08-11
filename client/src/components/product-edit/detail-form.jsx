@@ -86,6 +86,7 @@ const DetailForm = ({ initialData, productId }) => {
                       disabled={isSubmitting}
                       placeholder="e.g. 'Amet suscipit omnis eum necessitatibus quos doloribus.'"
                       {...field}
+                      className="h-[150px]"
                     />
                   </FormControl>
                   <FormMessage />

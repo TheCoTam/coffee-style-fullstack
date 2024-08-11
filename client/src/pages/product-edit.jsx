@@ -9,6 +9,7 @@ import DetailForm from "@/components/product-edit/detail-form";
 import PriceForm from "@/components/product-edit/price-form";
 import CategoryForm from "@/components/product-edit/category-form";
 import DimensionsForm from "@/components/product-edit/dimensions-form";
+import ImageForm from "@/components/product-edit/image-form";
 
 const ProductEditPage = () => {
   const { productId } = useParams();
@@ -39,16 +40,19 @@ const ProductEditPage = () => {
   }
 
   return (
-    <div className="flex gap-10 px-[50px] py-[80px] w-full">
-      <div className="w-[40%] space-y-3">
-        <NameForm initialData={mug} productId={productId} />
-        <DescriptionForm initialData={mug} productId={productId} />
-        <PriceForm initialData={mug} productId={productId} />
-        <CategoryForm initialData={mug} productId={productId} />
+    <div className="flex flex-col lg:flex-row gap-10 px-[10px] sm:px-[35px] lg:px-[50px] py-[80px] w-full">
+      <div className="lg:w-[40%] space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:grid-cols-1">
+          <NameForm initialData={mug} productId={productId} />
+          <DescriptionForm initialData={mug} productId={productId} />
+          <PriceForm initialData={mug} productId={productId} />
+          <CategoryForm initialData={mug} productId={productId} />
+        </div>
         <DimensionsForm initialData={mug} productId={productId} />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 space-y-3">
         <DetailForm initialData={mug} productId={productId} />
+        <ImageForm initialData={mug} productId={productId} />
       </div>
     </div>
   );

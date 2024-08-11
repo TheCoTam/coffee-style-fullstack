@@ -9,6 +9,7 @@ import {
   moreMugs,
   removeMug,
   take3Mugs,
+  updateMug,
 } from "../controller/mug-controller.js";
 
 const mugRouter = express.Router();
@@ -17,7 +18,9 @@ const mugRouter = express.Router();
 const storage = multer.diskStorage({
   destination: "uploads",
   filename: (req, file, cb) => {
-    return cb(null, `${Date.now()}${file.originalname}`);
+    if (file) {
+      return cb(null, `${Date.now()}${file.originalname}`);
+    }
   },
 });
 
@@ -30,5 +33,6 @@ mugRouter.get("/take-3-mugs", take3Mugs);
 mugRouter.get("/more-products", moreMugs);
 mugRouter.get("/all/:category", allMugs);
 mugRouter.get("/detail/:mugId", getMugById);
+mugRouter.patch("/:mugId", upload.single("image_url"), updateMug);
 
 export default mugRouter;

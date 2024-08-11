@@ -159,3 +159,39 @@ export const getMugById = async (req, res) => {
     res.json({ success: false, message: "Internal server error" });
   }
 };
+
+// update mug item
+export const updateMug = async (req, res) => {
+  try {
+    const id = req.params.mugId;
+
+    if (!id) {
+      return res.json({ success: false, message: "Id not found" });
+    }
+
+    if (req.file) {
+      const mug = await mugModel.findById(id);
+
+      fs.unlink(`uploads/${mug.image_url}`, (err) => {
+        if (err) {
+          console.error("Failed to remove image:", err);
+          return res.json({
+            success: false,
+            message: "Failed to remove image",
+          });
+        }
+      });
+
+      await mugModel.findByIdAndUpdate(id, { image_url: req.file.filename });
+
+      return res.json({ success: true });
+    }
+
+    const values = req.body;
+    await mugModel.findByIdAndUpdate(id, values);
+    res.json({ success: true });
+  } catch (error) {
+    console.log("[update-mug]", error);
+    res.json({ success: false, message: "Internal server error" });
+  }
+};

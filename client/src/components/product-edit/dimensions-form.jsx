@@ -41,7 +41,7 @@ const DimensionsForm = ({ initialData, productId }) => {
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
-  const { isSubmitting, isValid } = form.formState;
+  const { isSubmitting } = form.formState;
 
   const toggleEdit = () => setIsEditing((prev) => !prev);
 
@@ -115,10 +115,12 @@ const DimensionsForm = ({ initialData, productId }) => {
                   className="flex items-center gap-3"
                 >
                   <p className="shrink-0 text-gray-500 text-sm">Length (in)</p>
-                  <FormControl>
-                    <Input type="number" placeholder="10" {...field} />
-                  </FormControl>
-                  <FormMessage />
+                  <div className="flex flex-col">
+                    <FormControl>
+                      <Input type="number" placeholder="10" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />
@@ -128,15 +130,17 @@ const DimensionsForm = ({ initialData, productId }) => {
               render={({ field }) => (
                 <FormItem className="flex items-center gap-3">
                   <p className="shrink-0 text-gray-500 text-sm">Height (in)</p>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      type="number"
-                      placeholder="10"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
+                  <div className="flex flex-col">
+                    <FormControl>
+                      <Input
+                        disabled={isSubmitting}
+                        type="number"
+                        placeholder="10"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />
@@ -146,15 +150,17 @@ const DimensionsForm = ({ initialData, productId }) => {
               render={({ field }) => (
                 <FormItem className="flex items-center gap-3">
                   <p className="shrink-0 text-gray-500 text-sm">Width (in)</p>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      type="number"
-                      placeholder="10"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
+                  <div className="flex flex-col">
+                    <FormControl>
+                      <Input
+                        disabled={isSubmitting}
+                        type="number"
+                        placeholder="10"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />
@@ -164,20 +170,22 @@ const DimensionsForm = ({ initialData, productId }) => {
               render={({ field }) => (
                 <FormItem className="flex items-center gap-3">
                   <p className="shrink-0 text-gray-500 text-sm">Weight (oz)</p>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      type="number"
-                      placeholder="20"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
+                  <div className="flex flex-col">
+                    <FormControl>
+                      <Input
+                        disabled={isSubmitting}
+                        type="number"
+                        placeholder="20"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={!isValid || isSubmitting} type="submit">
+              <Button disabled={isSubmitting} type="submit">
                 Save
               </Button>
             </div>
