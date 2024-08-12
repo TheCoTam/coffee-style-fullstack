@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 mugRouter.post("/add", upload.single("image_url"), addMug);
-mugRouter.delete("/remove", removeMug);
+mugRouter.delete("/:mugId", removeMug);
 mugRouter.get("/featured", featuredMug);
 mugRouter.get("/take-3-mugs", take3Mugs);
 mugRouter.get("/more-products", moreMugs);

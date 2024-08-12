@@ -77,13 +77,13 @@ const CreateMug = () => {
         formData.append(key, value[key]);
       }
 
-      const response = await axios.post(url + "/api/mug/add", formData);
+      const res = await axios.post(url + "/api/mug/add", formData);
 
-      if (response.data.success) {
-        toast.success(response.data.message);
-        navigate("/");
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate(`/product/${res.data.id}`);
       } else {
-        toast.error(response.data.message);
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log("[add-mug]", error);

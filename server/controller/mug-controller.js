@@ -45,8 +45,9 @@ export const addMug = async (req, res) => {
       category,
     });
 
-    await mug.save();
-    res.json({ success: true, message: "Mug added" });
+    const newMug = await mug.save();
+
+    res.json({ success: true, message: "Mug added", id: newMug._id });
   } catch (error) {
     console.log("[add-mug]", error);
     res.json({ success: false, message: "Internal server error" });
@@ -56,13 +57,13 @@ export const addMug = async (req, res) => {
 // remove mug item
 export const removeMug = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.mugId;
 
     if (!id) {
       return res.json({ success: false, message: "Missing mug id" });
     }
 
-    const mug = await mugModel.findById(req.body.id);
+    const mug = await mugModel.findById(id);
     if (!mug) {
       return res.json({ success: false, message: "Mug not found" });
     }
@@ -74,7 +75,7 @@ export const removeMug = async (req, res) => {
       }
     });
 
-    await mugModel.findByIdAndDelete(req.body.id);
+    await mugModel.findByIdAndDelete(id);
 
     res.json({ success: true, message: "Mug removed" });
   } catch (error) {

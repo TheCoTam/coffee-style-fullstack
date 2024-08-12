@@ -13,22 +13,22 @@ const url = import.meta.env.VITE_BACKEND_URL;
 const ViewMugs = () => {
   const [mugs, setMugs] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(url + "/api/mug/all/all");
+  async function fetchData() {
+    try {
+      const response = await axios.get(url + "/api/mug/all/all");
 
-        if (response.data.success) {
-          setMugs(response.data.data);
-        } else {
-          toast.error(response.data.message);
-        }
-      } catch (error) {
-        console.log("[view-mugs]", error);
-        toast.error("Something went wrong with Mugs");
+      if (response.data.success) {
+        setMugs(response.data.data);
+      } else {
+        toast.error(response.data.message);
       }
+    } catch (error) {
+      console.log("[view-mugs]", error);
+      toast.error("Something went wrong with Mugs");
     }
+  }
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -70,7 +70,7 @@ const ViewMugs = () => {
                   >
                     {mug.name}
                   </Link>
-                  <Actions type="product" id={mug._id} />
+                  <Actions type="product" id={mug._id} fetchData={fetchData} />
                 </div>
                 <div className="flex gap-3">
                   <p>{formatDate(mug.updatedAt)}</p>

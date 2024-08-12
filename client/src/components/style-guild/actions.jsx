@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Ellipsis, Pencil, Trash2 } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Ellipsis, Pencil, Trash2 } from "lucide-react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogClose,
@@ -17,10 +19,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import axios from "axios";
 
-const Actions = ({ type, id }) => {
+const Actions = ({ type, id, fetchData }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -31,11 +31,12 @@ const Actions = ({ type, id }) => {
     try {
       const url = import.meta.env.VITE_BACKEND_URL;
       const res = await axios.delete(
-        url + "/api/" + type === "product" ? "mug" : type + "/" + id
+        url + "/api/" + (type === "product" ? "mug" : type) + "/" + id
       );
 
       if (res.data.success) {
         toast.success("Product deleted");
+        fetchData();
       } else {
         toast.error(res.data.message);
       }
@@ -78,10 +79,11 @@ const Actions = ({ type, id }) => {
         </DialogHeader>
         <DialogFooter>
           <DialogClose className="mr-4">Cancel</DialogClose>
-          <DialogClose>
-            <Button variant="destructive" onClick={handleDelete}>
-              Delete
-            </Button>
+          <DialogClose
+            className="bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90 h-10 px-4 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300"
+            onClick={handleDelete}
+          >
+            Delete
           </DialogClose>
         </DialogFooter>
       </DialogContent>
