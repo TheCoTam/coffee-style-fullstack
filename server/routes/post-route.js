@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 postRouter.post("/add", upload.single("image_url"), addPost);
-postRouter.delete("/remove", removePost);
+postRouter.delete("/:postId", removePost);
 postRouter.get("/get/:category", getPost);
 postRouter.get("/featured", featuredPosts);
 postRouter.get("/home-posts", homePosts);

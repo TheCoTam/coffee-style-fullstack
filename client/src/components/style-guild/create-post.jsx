@@ -57,13 +57,13 @@ const CreatePost = () => {
         formData.append(key, value[key]);
       }
 
-      const response = await axios.post(url + "/api/post/add", formData);
+      const res = await axios.post(url + "/api/post/add", formData);
 
-      if (response.data.success) {
-        toast.success(response.data.message);
-        navigate("/");
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate(`/blog/${res.data.id}`);
       } else {
-        toast.error(response.data.message);
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log("[add-post]", error);

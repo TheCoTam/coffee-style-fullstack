@@ -13,22 +13,22 @@ const url = import.meta.env.VITE_BACKEND_URL;
 const ViewPosts = () => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(url + "/api/post/get/all");
+  async function fetchData() {
+    try {
+      const response = await axios.get(url + "/api/post/get/all");
 
-        if (response.data.success) {
-          setPosts(response.data.data);
-        } else {
-          toast.error(response.data.message);
-        }
-      } catch (error) {
-        console.log("[view-mugs]", error);
-        toast.error("Something went wrong with Mugs");
+      if (response.data.success) {
+        setPosts(response.data.data);
+      } else {
+        toast.error(response.data.message);
       }
+    } catch (error) {
+      console.log("[view-mugs]", error);
+      toast.error("Something went wrong with Mugs");
     }
+  }
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -70,7 +70,7 @@ const ViewPosts = () => {
                   >
                     {post.title}
                   </Link>
-                  <Actions type="post" id={post._id} />
+                  <Actions type="post" id={post._id} fetchData={fetchData} />
                 </div>
                 <div className="flex gap-3">
                   <p>{formatDate(post.updatedAt)}</p>

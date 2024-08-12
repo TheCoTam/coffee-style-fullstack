@@ -20,8 +20,9 @@ export const addPost = async (req, res) => {
       category,
     });
 
-    post.save();
-    res.json({ success: true, message: "Post Added" });
+    const newPost = await post.save();
+
+    res.json({ success: true, message: "Post Added", id: newPost._id });
   } catch (error) {
     console.log("[add-post]", error);
     res.json({ success: false, message: "Internal server error" });
@@ -31,7 +32,7 @@ export const addPost = async (req, res) => {
 // remove post item
 export const removePost = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.postId;
 
     if (!id) {
       return res.json({ success: false, message: "Missing post id" });
@@ -41,7 +42,6 @@ export const removePost = async (req, res) => {
     if (!post) {
       return res.json({ success: false, message: "Post not found" });
     }
-    console.log(post);
 
     fs.unlink(`uploads/${post.image_url}`, (err) => {
       if (err) {
